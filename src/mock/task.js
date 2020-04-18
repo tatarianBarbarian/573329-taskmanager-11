@@ -1,6 +1,6 @@
 import {COLORS} from "../const.js";
 
-const DescriptionItems = [
+const descriptionItems = [
   `Изучить теорию`,
   `Сделать домашку`,
   `Пройти интенсив на соточку`,
@@ -28,7 +28,7 @@ const getRandomArrayItem = (array) => {
 
 const getRandomDate = () => {
   const targetDate = new Date();
-  const sign = Math.random() > 0.5 ? 1 : -1;
+  const sign = getRandomBool() ? 1 : -1;
   const diffValue = sign * getRandomIntegerNumber(0, 8);
 
   targetDate.setDate(targetDate.getDate() + diffValue);
@@ -36,28 +36,30 @@ const getRandomDate = () => {
   return targetDate;
 };
 
+const getRandomBool = () => Math.random() > 0.5;
+
 const generateRepeatingDays = () => {
   return Object.assign({}, DefaultRepeatingDays, {
-    "mo": Math.random() > 0.5,
-    "tu": Math.random() > 0.5,
-    "we": Math.random() > 0.5,
-    "th": Math.random() > 0.5,
-    "fr": Math.random() > 0.5,
-    "sa": Math.random() > 0.5,
-    "su": Math.random() > 0.5
+    "mo": getRandomBool(),
+    "tu": getRandomBool(),
+    "we": getRandomBool(),
+    "th": getRandomBool(),
+    "fr": getRandomBool(),
+    "sa": getRandomBool(),
+    "su": getRandomBool()
   });
 };
 
 const generateTask = () => {
-  const dueDate = Math.random() > 0.5 ? null : getRandomDate();
+  const dueDate = getRandomBool() ? null : getRandomDate();
 
   return {
-    description: getRandomArrayItem(DescriptionItems),
+    description: getRandomArrayItem(descriptionItems),
     dueDate,
     repeatingDays: dueDate ? DefaultRepeatingDays : generateRepeatingDays(),
     color: getRandomArrayItem(COLORS),
-    isArchive: Math.random() > 0.5,
-    isFavorite: Math.random() > 0.5,
+    isArchive: getRandomBool(),
+    isFavorite: getRandomBool(),
   };
 };
 
