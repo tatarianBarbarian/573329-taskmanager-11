@@ -6,10 +6,9 @@ import {createTaskEditTemplate} from './components/edit-card';
 import {createLoadMoreButtonTemplate} from './components/load-more-button';
 import {generateFilters} from "./mock/filter.js";
 import {generateTasks} from './mock/task.js';
+import {viewSettings} from './config.js';
 
-const TASK_COUNT = 22;
-const SHOWING_TASKS_COUNT_ON_START = 8;
-const SHOWING_TASKS_COUNT_BY_BUTTON = 8;
+const {TASK_COUNT, SHOWING_TASKS_COUNT_ON_START, SHOWING_TASKS_COUNT_BY_BUTTON} = viewSettings;
 
 const render = (container, template, place = `beforeend`) => {
   container.insertAdjacentHTML(place, template);

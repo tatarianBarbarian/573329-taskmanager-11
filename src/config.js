@@ -1,0 +1,5 @@
+export const viewSettings = {
+  TASK_COUNT: 22,
+  SHOWING_TASKS_COUNT_ON_START: 8,
+  SHOWING_TASKS_COUNT_BY_BUTTON: 8,
+};
