@@ -1,4 +1,4 @@
-import {COLORS} from "../const.js";
+import {COLORS, DAYS} from "../const.js";
 
 const descriptionItems = [
   `Изучить теорию`,
@@ -6,15 +6,11 @@ const descriptionItems = [
   `Пройти интенсив на соточку`,
 ];
 
-const DefaultRepeatingDays = {
-  "mo": false,
-  "tu": false,
-  "we": false,
-  "th": false,
-  "fr": false,
-  "sa": false,
-  "su": false,
-};
+const DefaultRepeatingDays = DAYS.reduce((acc, cur) => {
+  acc[cur] = false;
+
+  return acc;
+}, {});
 
 const getRandomIntegerNumber = (min, max) => {
   return min + Math.floor(Math.random() * (max - min));
@@ -39,15 +35,11 @@ const getRandomDate = () => {
 const getRandomBool = () => Math.random() > 0.5;
 
 const generateRepeatingDays = () => {
-  return Object.assign({}, DefaultRepeatingDays, {
-    "mo": getRandomBool(),
-    "tu": getRandomBool(),
-    "we": getRandomBool(),
-    "th": getRandomBool(),
-    "fr": getRandomBool(),
-    "sa": getRandomBool(),
-    "su": getRandomBool()
-  });
+  return DAYS.reduce((acc, cur) => {
+    acc[cur] = getRandomBool();
+
+    return acc;
+  }, {});
 };
 
 const generateTask = () => {
